@@ -12,7 +12,6 @@
   "author": "rikka1128@gmail.com",
   "main": "dist/app.bundle.js",
   "scripts": {
-    "prepublish": "npm run build",
     "build": "webpack"
   },
   "peerDependencies": {
