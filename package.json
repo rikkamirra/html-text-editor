@@ -9,18 +9,16 @@
   "engines": {
     "node": ">= 4"
   },
-  "author": "Mariya Axamit",
-  "main": "src/app.js",
+  "author": "rikka1128@gmail.com",
+  "main": "dist/app.bundle.js",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "webpack"
   },
   "peerDependencies": {
     "angular": "^1.6.4",
-    "angular-animate": "^1.6.6",
-    "angular-cookies": "^1.6.4",
     "angular-ui-bootstrap": "^2.5.0",
     "bootstrap": "^3.3.7",
-    "jquery": "^3.2.1",
     "requirejs": "^2.3.3",
     "ui-bootstrap": "^0.1.10",
     "underscore": "^1.8.3"
