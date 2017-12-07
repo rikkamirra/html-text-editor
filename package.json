@@ -6,7 +6,6 @@
     "type": "git",
     "url": "git@github.com:rikkamirra/html-text-editor.git"
   },
-  "private": true,
   "engines": {
     "node": ">= 4"
   },
