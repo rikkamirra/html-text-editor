@@ -7,7 +7,7 @@ const textEditor = {
   controller: TextEditorController
 };
 
-function TextEditorController(TextService, ModalService) {
+function TextEditorController(TextService) {
   this.$onInit = () => {
     this.cursor = {
       start: 0,
@@ -30,7 +30,7 @@ function TextEditorController(TextService, ModalService) {
   };
 
   this.sortText = () => {
-    this.myText = sortBy(this.myText.split('\n')).join('\n');
+    this.myText = this.myText.split('\n').sort().join('\n');
   };
 
   this.wrapText = (wrap) => {
@@ -48,7 +48,7 @@ function TextEditorController(TextService, ModalService) {
       case "Enter":
         e.preventDefault();
         let position = e.srcElement.selectionStart;
-        let stringToInsert = '\n</br>\n';
+        let stringToInsert = '</br>\n';
         this.myText = TextService.insertString(position, this.myText, stringToInsert);
         TextService.setCursor(e.srcElement, position + stringToInsert.length);
         break;
@@ -58,6 +58,6 @@ function TextEditorController(TextService, ModalService) {
   };
 }
 
-TextEditorController.$inject = ['TextService', 'ModalService'];
+TextEditorController.$inject = ['TextService'];
 
 export default textEditor;

@@ -1,6 +1,6 @@
 {
   "name": "html-text-editor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/rikkamirra/html-text-editor",
   "repository": {
     "type": "git",
@@ -16,11 +16,7 @@
   },
   "peerDependencies": {
     "angular": "^1.6.4",
-    "angular-ui-bootstrap": "^2.5.0",
-    "bootstrap": "^3.3.7",
-    "requirejs": "^2.3.3",
-    "ui-bootstrap": "^0.1.10",
-    "underscore": "^1.8.3"
+    "bootstrap": "^3.3.7"
   },
   "devDependencies": {
     "raw-loader": "^0.5.1",

@@ -97,7 +97,7 @@ const textEditor = {
   controller: TextEditorController
 };
 
-function TextEditorController(TextService, ModalService) {
+function TextEditorController(TextService) {
   this.$onInit = () => {
     this.cursor = {
       start: 0,
@@ -120,7 +120,7 @@ function TextEditorController(TextService, ModalService) {
   };
 
   this.sortText = () => {
-    this.myText = sortBy(this.myText.split('\n')).join('\n');
+    this.myText = this.myText.split('\n').sort().join('\n');
   };
 
   this.wrapText = (wrap) => {
@@ -148,7 +148,7 @@ function TextEditorController(TextService, ModalService) {
   };
 }
 
-TextEditorController.$inject = ['TextService', 'ModalService'];
+TextEditorController.$inject = ['TextService'];
 
 /* harmony default export */ __webpack_exports__["a"] = (textEditor);
 
