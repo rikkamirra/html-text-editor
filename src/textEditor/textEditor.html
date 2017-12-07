@@ -1,3 +1,24 @@
+<style>
+  .tools-panel {
+    display: flex;
+    justify-content: center;
+    color: gray;
+  }
+
+  .tools-panel__item {
+    border-radius: 50%;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    width: 1.9rem;
+    text-align: center;
+  }
+
+  .tools-panel__item:hover {
+    box-shadow: 0 0.4rem 1rem 0.1rem grey;
+    cursor: pointer;
+  }
+</style>
+
 <div class="tools-panel">
   <div class="tools-panel__item" ng-click="$ctrl.addText()"><span class="glyphicon glyphicon-pencil"></span></div>
   <div class="tools-panel__item" ng-click="$ctrl.sortText()"><span class="glyphicon glyphicon-sort-by-attributes"></span></div>
@@ -12,6 +33,5 @@
   ng-keypress="$ctrl.handleKeyPress($event)"
   ng-blur="$ctrl.saveCursor($event)"
   rows="20"
-  required
   >
 </textarea>

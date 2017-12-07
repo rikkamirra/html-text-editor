@@ -70,11 +70,14 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textEditor_textEditor__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TextService__ = __webpack_require__(3);
+
 
 
 const MODULE_NAME = 'HtmlTextEditor';
 
 angular.module(MODULE_NAME, [])
+.factory('TextService', __WEBPACK_IMPORTED_MODULE_1__TextService__["a" /* default */])
 .component('textEditor', __WEBPACK_IMPORTED_MODULE_0__textEditor_textEditor__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["default"] = (MODULE_NAME);
@@ -154,7 +157,57 @@ TextEditorController.$inject = ['TextService', 'ModalService'];
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tools-panel\">\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.addText()\"><span class=\"glyphicon glyphicon-pencil\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.sortText()\"><span class=\"glyphicon glyphicon-sort-by-attributes\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('i')\"><span class=\"glyphicon glyphicon-italic\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('b')\"><span class=\"glyphicon glyphicon-bold\"></span></div>\n</div>\n\n<textarea\n  id=\"article-input\"\n  class=\"form-control\"\n  ng-model=\"$ctrl.myText\"\n  ng-keypress=\"$ctrl.handleKeyPress($event)\"\n  ng-blur=\"$ctrl.saveCursor($event)\"\n  rows=\"20\"\n  required\n  >\n</textarea>\n"
+module.exports = "<style>\n  .tools-panel {\n    display: flex;\n    justify-content: center;\n    color: gray;\n  }\n\n  .tools-panel__item {\n    border-radius: 50%;\n    margin: 0.5rem;\n    padding: 0.3rem;\n    width: 1.9rem;\n    text-align: center;\n  }\n\n  .tools-panel__item:hover {\n    box-shadow: 0 0.4rem 1rem 0.1rem grey;\n    cursor: pointer;\n  }\n</style>\n\n<div class=\"tools-panel\">\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.addText()\"><span class=\"glyphicon glyphicon-pencil\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.sortText()\"><span class=\"glyphicon glyphicon-sort-by-attributes\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('i')\"><span class=\"glyphicon glyphicon-italic\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('b')\"><span class=\"glyphicon glyphicon-bold\"></span></div>\n</div>\n\n<textarea\n  id=\"article-input\"\n  class=\"form-control\"\n  ng-model=\"$ctrl.myText\"\n  ng-keypress=\"$ctrl.handleKeyPress($event)\"\n  ng-blur=\"$ctrl.saveCursor($event)\"\n  rows=\"20\"\n  >\n</textarea>\n"
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function TextService() {
+  return {
+    insertString(position, text, stringToInsert) {
+      text = text || '';
+      return text.slice(0, position) + stringToInsert + text.slice(position);
+    },
+
+    wrapByString(str, strElement, cursor) {
+      return str.slice(0, cursor.start) + strElement.open + str.slice(cursor.start, cursor.end) + strElement.close + str.slice(cursor.end, str.length);
+    },
+
+    setCursor(input, positionStart, positionEnd) {
+      setTimeout(function () {
+        input.focus();
+        input.setSelectionRange(positionStart, positionEnd || positionStart);
+      }, 10);
+    },
+
+    buildImage(src) {
+      return `\n<img height="300" style="margin: 0.5rem;" src="${src}">\n`;
+    },
+
+    buildText() {
+      return '\n<p>\nтекст\n</p>\n';
+    },
+
+    buildElement(elContent) {
+      return { open: `<${elContent}>`, close: `</${elContent}>` };
+    },
+
+    getStartText(position) {
+      return position + '\n<p>\n'.length;
+    },
+
+    getEndText(position) {
+      return position + '\n<p>\n'.length + 'текст'.length;
+    },
+  }
+}
+
+TextService.$inject = [];
+
+/* harmony default export */ __webpack_exports__["a"] = (TextService);
+
 
 /***/ })
 /******/ ]);
