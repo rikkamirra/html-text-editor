@@ -40,7 +40,7 @@ function TextEditorController(TextService) {
       element,
       this.cursor
     );
-    TextService.setCursor(this.textareaElement, this.cursor.start);
+    TextService.setCursor(this.textareaElement, this.cursor.start + wrap.length + 2, this.cursor.end + wrap.length + 2);
   };
 
   this.handleKeyPress = (e) => {
