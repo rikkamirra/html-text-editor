@@ -138,7 +138,7 @@ function TextEditorController(TextService) {
       case "Enter":
         e.preventDefault();
         let position = e.srcElement.selectionStart;
-        let stringToInsert = '\n</br>\n';
+        let stringToInsert = '</br>\n';
         this.myText = TextService.insertString(position, this.myText, stringToInsert);
         TextService.setCursor(e.srcElement, position + stringToInsert.length);
         break;
@@ -157,7 +157,7 @@ TextEditorController.$inject = ['TextService'];
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = "<style>\n  .tools-panel {\n    display: flex;\n    justify-content: center;\n    color: gray;\n  }\n\n  .tools-panel__item {\n    border-radius: 50%;\n    margin: 0.5rem;\n    padding: 0.3rem;\n    width: 1.9rem;\n    text-align: center;\n  }\n\n  .tools-panel__item:hover {\n    box-shadow: 0 0.4rem 1rem 0.1rem grey;\n    cursor: pointer;\n  }\n</style>\n\n<div class=\"tools-panel\">\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.addText()\"><span class=\"glyphicon glyphicon-pencil\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.sortText()\"><span class=\"glyphicon glyphicon-sort-by-attributes\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('i')\"><span class=\"glyphicon glyphicon-italic\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('b')\"><span class=\"glyphicon glyphicon-bold\"></span></div>\n</div>\n\n<textarea\n  id=\"article-input\"\n  class=\"form-control\"\n  ng-model=\"$ctrl.myText\"\n  ng-keypress=\"$ctrl.handleKeyPress($event)\"\n  ng-blur=\"$ctrl.saveCursor($event)\"\n  rows=\"20\"\n  >\n</textarea>\n"
+module.exports = "<style>\n  .tools-panel {\n    display: flex;\n    justify-content: center;\n    color: gray;\n  }\n\n  .tools-panel__item {\n    margin: 0.5rem;\n    padding: 0.3rem;\n    width: 1.9rem;\n    text-align: center;\n  }\n\n  .tools-panel__item:hover {\n    border-bottom-style: solid;\n    border-bottom: gray;\n    cursor: pointer;\n  }\n</style>\n\n<div class=\"tools-panel\">\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.addText()\"><span class=\"glyphicon glyphicon-pencil\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.sortText()\"><span class=\"glyphicon glyphicon-sort-by-attributes\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('i')\"><span class=\"glyphicon glyphicon-italic\"></span></div>\n  <div class=\"tools-panel__item\" ng-click=\"$ctrl.wrapText('b')\"><span class=\"glyphicon glyphicon-bold\"></span></div>\n</div>\n\n<textarea\n  id=\"article-input\"\n  class=\"form-control\"\n  ng-model=\"$ctrl.myText\"\n  ng-keypress=\"$ctrl.handleKeyPress($event)\"\n  ng-blur=\"$ctrl.saveCursor($event)\"\n  rows=\"20\"\n  >\n</textarea>\n"
 
 /***/ }),
 /* 3 */
