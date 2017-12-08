@@ -22,13 +22,6 @@ function TextEditorController(TextService) {
     this.cursor.end = e.srcElement.selectionEnd;
   };
 
-  this.addText = () => {
-    const position = this.cursor.start || 0;
-    const stringToInsert = TextService.buildText();
-    this.myText = TextService.insertString(position, this.myText, stringToInsert);
-    TextService.setCursor(this.textareaElement, TextService.getStartText(position), TextService.getEndText(position));
-  };
-
   this.sortText = () => {
     this.myText = this.myText.split('\n').sort().join('\n');
   };
