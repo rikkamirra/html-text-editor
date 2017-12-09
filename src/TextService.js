@@ -5,14 +5,34 @@ function TextService() {
       return text.slice(0, position) + stringToInsert + text.slice(position);
     },
 
-    wrapByString(str, strElement, cursor) {
-      return str.slice(0, cursor.start) + strElement.open + str.slice(cursor.start, cursor.end) + strElement.close + str.slice(cursor.end, str.length);
+    wrapByStringOrCut(str, strElement, cursor) {
+      if (str.slice(cursor.start - strElement.open.length, cursor.start) === strElement.open) {
+        return {
+          str: str.slice(0, cursor.start - strElement.open.length) +
+            str.slice(cursor.start, cursor.end) +
+            str.slice(cursor.end + strElement.close.length, str.length),
+          cursor: {
+            start: cursor.start - strElement.open.length,
+            end: cursor.end - strElement.open.length
+          }
+        }
+      }
+      return {
+        str: str.slice(0, cursor.start) +
+          strElement.open +
+          str.slice(cursor.start, cursor.end) +
+          strElement.close + str.slice(cursor.end, str.length),
+        cursor: {
+          start: cursor.start + strElement.open.length,
+          end: cursor.end + strElement.open.length
+        }
+      }
     },
 
-    setCursor(input, positionStart, positionEnd) {
-      setTimeout(function () {
+    setCursor(input, cursor) {
+      setTimeout(() => {
         input.focus();
-        input.setSelectionRange(positionStart, positionEnd || positionStart);
+        input.setSelectionRange(cursor.start, cursor.end || cursor.start);
       }, 10);
     },
 
@@ -21,7 +41,10 @@ function TextService() {
     },
 
     buildElement(elContent) {
-      return { open: `<${elContent}>`, close: `</${elContent}>` };
+      return {
+        open: `<${elContent}>`,
+        close: `</${elContent}>`
+      };
     },
 
     getStartText(position) {
