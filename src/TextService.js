@@ -20,10 +20,6 @@ function TextService() {
       return `\n<img height="300" style="margin: 0.5rem;" src="${src}">\n`;
     },
 
-    buildText() {
-      return '\n<p>\nтекст\n</p>\n';
-    },
-
     buildElement(elContent) {
       return { open: `<${elContent}>`, close: `</${elContent}>` };
     },
