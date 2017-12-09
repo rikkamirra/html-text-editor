@@ -28,12 +28,17 @@ function TextEditorController(TextService) {
 
   this.wrapText = (wrap) => {
     const element = TextService.buildElement(wrap);
-    this.myText = TextService.wrapByString(
+    const result = TextService.wrapByStringOrCut(
       this.myText,
       element,
       this.cursor
     );
-    TextService.setCursor(this.textareaElement, this.cursor.start + wrap.length + 2, this.cursor.end + wrap.length + 2);
+    this.myText = result.str;
+    this.cursor = result.cursor;
+    TextService.setCursor(
+      this.textareaElement,
+      this.cursor
+    );
   };
 
   this.handleKeyPress = (e) => {
@@ -43,7 +48,7 @@ function TextEditorController(TextService) {
         let position = e.srcElement.selectionStart;
         let stringToInsert = '</br>\n';
         this.myText = TextService.insertString(position, this.myText, stringToInsert);
-        TextService.setCursor(e.srcElement, position + stringToInsert.length);
+        TextService.setCursor(e.srcElement, { start: position + stringToInsert.length });
         break;
       default:
         break;
