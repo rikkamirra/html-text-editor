@@ -8,6 +8,12 @@ npm install html-text-editor
 
 Usage:
 ```
+import 'html-text-editor';
+```
+```
+angular.module(MODULE_NAME, ['HtmlTextEditor'])
+```
+```
 <text-editor my-text="$ctrl.article.body" add-image="$ctrl.addImage()"></text-editor>
 ```
 
