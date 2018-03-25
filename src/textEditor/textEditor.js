@@ -42,14 +42,28 @@ function TextEditorController(TextService) {
     );
   };
 
+  this.addList = () => {
+    var stringToInsert = '\n<ul>\n<li></li>\n</ul>';
+    this.myText = TextService.insertString(this.cursor.start, this.myText, stringToInsert);
+    TextService.setCursor(this.textareaElement, { start: this.cursor.start + 10 });
+    this.isInsideList = true;
+  };
+
   this.handleKeyPress = (e) => {
     switch (e.code) {
       case "Enter":
         e.preventDefault();
         let position = e.srcElement.selectionStart;
         let stringToInsert = '</br>\n';
+        let cursorStart = position + stringToInsert.length;
+
+        if (this.myText.slice(position, position + 5) === '</li>') {
+          stringToInsert = '\n<li></li>';
+          position += 5;
+          cursorStart = position + 5;
+        }
         this.myText = TextService.insertString(position, this.myText, stringToInsert);
-        TextService.setCursor(e.srcElement, { start: position + stringToInsert.length });
+        TextService.setCursor(e.srcElement, { start: cursorStart });
         break;
       default:
         break;
