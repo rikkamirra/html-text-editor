@@ -3,6 +3,7 @@ const textEditor = {
   template: require('./textEditor.html'),
   bindings: {
     myText: '=',
+    addImage: '&'
   },
   controller: TextEditorController
 };
